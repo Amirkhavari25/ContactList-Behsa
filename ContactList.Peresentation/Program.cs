@@ -1,4 +1,6 @@
 
+using ContactList.Infrastructure.Persistance;
+
 namespace ContactList.Peresentation
 {
     public class Program
@@ -8,6 +10,8 @@ namespace ContactList.Peresentation
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddScoped<DapperDbContext>();
+
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
