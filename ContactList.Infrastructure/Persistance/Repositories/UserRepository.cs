@@ -1,5 +1,7 @@
 ﻿using ContactList.Application.Contracts.Persistance;
 using ContactList.Domain.Entities;
+using Dapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,24 +12,65 @@ namespace ContactList.Infrastructure.Persistance.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public Task AddAsync(User user)
+        private readonly DapperDbContext _context;
+        public UserRepository(DapperDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task AddAsync(User user)
+        {
+            const string query = @"
+            INSERT INTO Users (Id, Email, Username, Mobile, PasswordHash, IsDelete)
+            VALUES (@Id, @Email, @Username, @Mobile, @PasswordHash, @IsDelete);";
+
+            var parameters = new
+            {
+                user.Id,
+                user.Email,
+                user.Username,
+                user.Mobile,
+                user.PasswordHash,
+                user.IsDelete,
+            };
+
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, parameters);
+            }
         }
 
-        public Task<User?> GetByEmailAsync(string email)
+        public async Task<User?> GetByEmailAsync(string email)
         {
-            throw new NotImplementedException();
+            const string query = @"SELECT * FROM Users WHERE Email = @Email AND IsDelete = 0;";
+
+
+            using (var connection = _context.CreateConnection())
+            {
+                var user = await connection.QueryFirstOrDefaultAsync<User>(query, new { Email = email });
+                return user;
+            }
         }
 
-        public Task<User?> GetByIdAsync(Guid id)
+        public async Task<User?> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            const string query = @"SELECT * FROM Users WHERE Id = @Id AND IsDelete = 0;";
+
+            using (var connection = _context.CreateConnection())
+            {
+                var user = await connection.QueryFirstOrDefaultAsync<User>(query, new { Id = id });
+                return user;
+            }
         }
 
-        public Task<User?> GetByUsernameAsync(string username)
+        public async Task<User?> GetByUsernameAsync(string username)
         {
-            throw new NotImplementedException();
+            const string query = @"SELECT * FROM Users WHERE Username = @Username AND IsDelete = 0;";
+
+            using (var connection = _context.CreateConnection())
+            {
+                var user = await connection.QueryFirstOrDefaultAsync<User>(query, new { Username = username });
+                return user;
+            }
         }
     }
 }
