@@ -111,8 +111,8 @@ You can import it into Postman to access ready-to-use requests for all endpoints
 
 ## 👨‍💻 Author
 
-**[Your Name]**  
-Built with ♥️ for the Behsa hiring task
+**Amir hossein khavari**  
+Built for the Behsa hiring task
 
 ---
 
