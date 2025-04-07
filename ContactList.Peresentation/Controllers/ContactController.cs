@@ -1,4 +1,5 @@
 ﻿using ContactList.Application.Features.Contacts.Command.CreateContact;
+using ContactList.Application.Features.Contacts.Command.UpdateContact;
 using ContactList.Application.Features.Contacts.Queries.GetContactById;
 using ContactList.Application.Features.Contacts.Queries.GettAllContacts;
 using MediatR;
@@ -84,6 +85,33 @@ namespace ContactList.Peresentation.Controllers
                     return NotFound("Contact not found");
                 }
                 return Ok(result);
+            }
+            else if (result.ErrorMessage.Contains("not found", StringComparison.OrdinalIgnoreCase))
+            {
+                return NotFound(new { message = result.ErrorMessage });
+            }
+            else
+            {
+                return StatusCode(500, new { message = result.ErrorMessage });
+            }
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateContact(Guid id, [FromBody] UpdateContactCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest("Task Id mismatch");
+            }
+            var creatorId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (creatorId == null)
+            {
+                return Unauthorized("Invalid User request,Please try to login");
+            }
+            command.creatorId = creatorId;
+            var result = await _mediator.Send(command);
+            if (result.Success)
+            {
+                return NoContent();
             }
             else if (result.ErrorMessage.Contains("not found", StringComparison.OrdinalIgnoreCase))
             {
