@@ -1,0 +1,1148 @@
+{
+	"info": {
+		"_postman_id": "91e84f59-3f14-4cb9-a5d4-9cc759023081",
+		"name": "Behsa-ContactList",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34213479"
+	},
+	"item": [
+		{
+			"name": "RegisterUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"username\": \"username\",\r\n  \"mobile\": \"0912\",\r\n  \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HostAddress}}:5018/api/auth/register",
+					"host": [
+						"{{HostAddress}}"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"username\": \"username\",\r\n  \"mobile\": \"0912\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/auth/register",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 13:08:12 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": \"1d55ba13-1fd6-4b00-9957-f428edfd9256\",\n        \"email\": \"user@example.com\",\n        \"username\": \"username\",\n        \"mobile\": \"0912\"\n    },\n    \"errorMessage\": null,\n    \"validationErrors\": [],\n    \"errorCode\": null\n}"
+				},
+				{
+					"name": "User already exist error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"username\": \"username\",\r\n  \"mobile\": \"0912\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/auth/register",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 13:09:08 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "User already exist try to login"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"string\",\r\n  \"password\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HostAddress}}:5018/api/auth/login",
+					"host": [
+						"{{HostAddress}}"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User not found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"string\",\r\n  \"password\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/auth/login",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 13:24:42 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "User not found"
+				},
+				{
+					"name": "Wrong password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/auth/login",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 13:25:35 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "Wrong password or email"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/auth/login",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 13:26:06 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZDU1YmExMy0xZmQ2LTRiMDAtOTk1Ny1mNDI4ZWRmZDkyNTYiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjFkNTViYTEzLTFmZDYtNGIwMC05OTU3LWY0MjhlZGZkOTI1NiIsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInVzZXJuYW1lIjoidXNlcm5hbWUiLCJleHAiOjE3NDQwMzU5NjYsImlzcyI6IkJlaHNhLnRlc3QiLCJhdWQiOiJCZWhzYS50ZXN0In0.ZetZDiZFopn-RLVJbZ0QfCdzFF1Aw_josR66avhaJMA\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create contact",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"string\",\r\n  \"phoneNumber\": \"string\",\r\n  \"email\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HostAddress}}:5018/api/contact",
+					"host": [
+						"{{HostAddress}}"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"contact"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Unauthorize",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"string\",\r\n  \"phoneNumber\": \"string\",\r\n  \"email\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 14:38:19 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "WWW-Authenticate",
+							"value": "Bearer"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Successfull",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"First contact\",\r\n  \"phoneNumber\": \"0912\",\r\n  \"email\": \"test@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 14:40:01 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": \"a0c0e3a2-1feb-4169-b13c-6a6d33deffe7\",\n        \"name\": \"First contact\",\n        \"phoneNumber\": \"0912\",\n        \"email\": \"test@example.com\"\n    },\n    \"errorMessage\": null,\n    \"validationErrors\": [],\n    \"errorCode\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all contacts",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HostAddress}}:5018/api/contact",
+					"host": [
+						"{{HostAddress}}"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"contact"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Unauthorize",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 15:27:18 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "WWW-Authenticate",
+							"value": "Bearer"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 15:28:31 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"a0c0e3a2-1feb-4169-b13c-6a6d33deffe7\",\n            \"name\": \"First contact\",\n            \"phoneNumber\": \"0912\",\n            \"email\": \"test@example.com\"\n        }\n    ],\n    \"errorMessage\": null,\n    \"validationErrors\": [],\n    \"errorCode\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Get contact by Id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HostAddress}}:5018/api/contact/aaa",
+					"host": [
+						"{{HostAddress}}"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"contact",
+						"aaa"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Unauthorize",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact/aaa",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact",
+								"aaa"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 15:38:56 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "WWW-Authenticate",
+							"value": "Bearer"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Id validation error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact/aaa",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact",
+								"aaa"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/problem+json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 15:39:34 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"errors\": {\n        \"id\": [\n            \"The value 'aaa' is not valid.\"\n        ]\n    },\n    \"traceId\": \"00-908993dd5f57c20aa9c036ce7572589b-22c469d2c2b7d2db-00\"\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact/A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE7",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact",
+								"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE7"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 15:40:22 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": \"a0c0e3a2-1feb-4169-b13c-6a6d33deffe7\",\n        \"name\": \"First contact\",\n        \"phoneNumber\": \"0912\",\n        \"email\": \"test@example.com\"\n    },\n    \"errorMessage\": null,\n    \"validationErrors\": [],\n    \"errorCode\": null\n}"
+				},
+				{
+					"name": "Contact not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact/A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE8",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact",
+								"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE8"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 15:40:51 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "Task not found"
+				}
+			]
+		},
+		{
+			"name": "Update Contact",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"name\": \"string\",\r\n  \"phoneNumber\": \"string\",\r\n  \"email\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HostAddress}}:5018/api/contact/A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE7",
+					"host": [
+						"{{HostAddress}}"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"contact",
+						"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE7"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Unauthorize",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"name\": \"string\",\r\n  \"phoneNumber\": \"string\",\r\n  \"email\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact/A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE7",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact",
+								"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE7"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 15:58:20 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "WWW-Authenticate",
+							"value": "Bearer"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Bad request (Id mismatch)",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE8\",\r\n  \"name\": \"string\",\r\n  \"phoneNumber\": \"string\",\r\n  \"email\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact/A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE7",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact",
+								"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE7"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 16:06:15 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "Task Id mismatch"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE7\",\r\n  \"name\": \"edited\",\r\n  \"phoneNumber\": \"0912\",\r\n  \"email\": \"edited@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact/A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE7",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact",
+								"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE7"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 16:08:36 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "contact not found",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE8\",\r\n  \"name\": \"edited\",\r\n  \"phoneNumber\": \"0912\",\r\n  \"email\": \"edited@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact/A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE8",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact",
+								"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE8"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 16:09:15 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Contact not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete contact",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{HostAddress}}:5018/api/contact/A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE8",
+					"host": [
+						"{{HostAddress}}"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"contact",
+						"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE8"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Unauthorize",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact/A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE8",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact",
+								"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE8"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 16:22:22 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "WWW-Authenticate",
+							"value": "Bearer"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Not found",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact/A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE8",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact",
+								"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE8"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 16:25:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Contact not found\"\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HostAddress}}:5018/api/contact/A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE7",
+							"host": [
+								"{{HostAddress}}"
+							],
+							"port": "5018",
+							"path": [
+								"api",
+								"contact",
+								"A0C0E3A2-1FEB-4169-B13C-6A6D33DEFFE7"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 16:25:57 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
