@@ -62,7 +62,7 @@ namespace ContactList.DependencyInjection
 
             //security services
             services.AddScoped<IPasswordEncryptionService, PasswordEncryptionService>();
-
+            services.AddScoped<ITokenService, TokenService>();
             return services;
         }
     }

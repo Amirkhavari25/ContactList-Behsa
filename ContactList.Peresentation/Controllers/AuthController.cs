@@ -1,4 +1,5 @@
-﻿using ContactList.Application.Features.Users.Commands.RegisterUser;
+﻿using ContactList.Application.Features.Users.Commands.LoginUser;
+using ContactList.Application.Features.Users.Commands.RegisterUser;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,20 @@ namespace ContactList.Peresentation.Controllers
             }
 
             return BadRequest(result.ErrorMessage);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginCommand command)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid data");
+
+            var result = await _mediator.Send(command);
+
+            if (!result.Success)
+                return NotFound(result.ErrorMessage);
+
+            return Ok(new { Token = result.Data });
         }
     }
 }
