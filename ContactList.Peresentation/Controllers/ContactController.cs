@@ -1,4 +1,5 @@
 ﻿using ContactList.Application.Features.Contacts.Command.CreateContact;
+using ContactList.Application.Features.Contacts.Command.DeleteContact;
 using ContactList.Application.Features.Contacts.Command.UpdateContact;
 using ContactList.Application.Features.Contacts.Queries.GetContactById;
 using ContactList.Application.Features.Contacts.Queries.GettAllContacts;
@@ -77,7 +78,7 @@ namespace ContactList.Peresentation.Controllers
             {
                 return Unauthorized("Invalid User request,Please try to login");
             }
-            var result = await _mediator.Send(new GetContactByIdQuery(id,creatorId));
+            var result = await _mediator.Send(new GetContactByIdQuery(id, creatorId));
             if (result.Success)
             {
                 if (result.Data == null)
@@ -109,6 +110,28 @@ namespace ContactList.Peresentation.Controllers
             }
             command.creatorId = creatorId;
             var result = await _mediator.Send(command);
+            if (result.Success)
+            {
+                return NoContent();
+            }
+            else if (result.ErrorMessage.Contains("not found", StringComparison.OrdinalIgnoreCase))
+            {
+                return NotFound(new { message = result.ErrorMessage });
+            }
+            else
+            {
+                return StatusCode(500, new { message = result.ErrorMessage });
+            }
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteContact(Guid id)
+        {
+            var creatorId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (creatorId == null)
+            {
+                return Unauthorized("Invalid User request,Please try to login");
+            }
+            var result = await _mediator.Send(new DeleteContactCommand(id, creatorId));
             if (result.Success)
             {
                 return NoContent();
