@@ -1,16 +1,21 @@
 
+using ContactList.DependencyInjection;
 using ContactList.Infrastructure.Persistance;
+using Microsoft.EntityFrameworkCore;
+using System;
+
 
 namespace ContactList.Peresentation
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddScoped<DapperDbContext>();
+            // Add infrastructure services to the container.
+            builder.Services.AddInfrastructureServices(builder.Configuration);
+
 
 
             builder.Services.AddControllers();
@@ -19,6 +24,16 @@ namespace ContactList.Peresentation
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            //automatic jobs during running app for the first time
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                //Auto create database if not exist
+                var dbContext = services.GetRequiredService<EFDbContext>();
+                await dbContext.Database.MigrateAsync();
+            }
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

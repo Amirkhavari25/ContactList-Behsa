@@ -9,7 +9,7 @@ namespace ContactList.Domain.Entities
 {
     public class User
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; private set; }
         [MaxLength(100)]
         [EmailAddress]
         public string Email { get; set; }
@@ -22,5 +22,10 @@ namespace ContactList.Domain.Entities
         public bool IsDelete { get; set; } = false;
 
         public ICollection<Contact> Contacts { get; set; }
+
+        public User()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 }
