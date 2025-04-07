@@ -1,4 +1,5 @@
 
+using ContactList.Application;
 using ContactList.DependencyInjection;
 using ContactList.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,10 @@ namespace ContactList.Peresentation
             // Add infrastructure services to the container.
             builder.Services.AddInfrastructureServices(builder.Configuration);
 
+            //add mediatR dependency
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ApplicationAssemblyReference).Assembly));
+            //add dependency to AutoMapper
+            builder.Services.AddAutoMapper(typeof(ApplicationAssemblyReference).Assembly);
 
 
             builder.Services.AddControllers();
