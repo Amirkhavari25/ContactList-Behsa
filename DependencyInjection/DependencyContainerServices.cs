@@ -1,6 +1,8 @@
 ﻿using ContactList.Application.Contracts.Persistance;
+using ContactList.Application.Contracts.Security;
 using ContactList.Infrastructure.Persistance;
 using ContactList.Infrastructure.Persistance.Repositories;
+using ContactList.Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -57,6 +59,9 @@ namespace ContactList.DependencyInjection
             //repository services dependencies
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IContactRepository, ContactRepository>();
+
+            //security services
+            services.AddScoped<IPasswordEncryptionService, PasswordEncryptionService>();
 
             return services;
         }
