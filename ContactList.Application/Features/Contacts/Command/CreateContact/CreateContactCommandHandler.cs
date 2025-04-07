@@ -35,7 +35,7 @@ namespace ContactList.Application.Features.Contacts.Command.CreateContact
             }
             catch (Exception ex)
             {
-                return ResultDTO<ContactDTO>.FailureResult($"Error creating task: {ex.Message}");
+                return ResultDTO<ContactDTO>.FailureResult($"Error creating contact: {ex.Message}");
             }
         }
     }

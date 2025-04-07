@@ -1,4 +1,5 @@
 ﻿using ContactList.Application.Features.Contacts.Command.CreateContact;
+using ContactList.Application.Features.Contacts.Queries.GetContactById;
 using ContactList.Application.Features.Contacts.Queries.GettAllContacts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -61,6 +62,32 @@ namespace ContactList.Peresentation.Controllers
             else if (result.ErrorMessage.Contains("validation", StringComparison.OrdinalIgnoreCase))
             {
                 return BadRequest(new { message = result.ErrorMessage });
+            }
+            else
+            {
+                return StatusCode(500, new { message = result.ErrorMessage });
+            }
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var creatorId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (creatorId == null)
+            {
+                return Unauthorized("Invalid User request,Please try to login");
+            }
+            var result = await _mediator.Send(new GetContactByIdQuery(id,creatorId));
+            if (result.Success)
+            {
+                if (result.Data == null)
+                {
+                    return NotFound("Contact not found");
+                }
+                return Ok(result);
+            }
+            else if (result.ErrorMessage.Contains("not found", StringComparison.OrdinalIgnoreCase))
+            {
+                return NotFound(new { message = result.ErrorMessage });
             }
             else
             {

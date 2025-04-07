@@ -30,7 +30,7 @@ namespace ContactList.Application.Features.Contacts.Queries.GettAllContacts
             }
             catch (Exception ex)
             {
-                return ResultDTO<List<ContactDTO>>.FailureResult($"Error getting all tasks: {ex.Message}");
+                return ResultDTO<List<ContactDTO>>.FailureResult($"Error getting all contacts: {ex.Message}");
             }
         }
     }
